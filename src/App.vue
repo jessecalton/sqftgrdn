@@ -28,5 +28,7 @@ export default {
 
 .header--title {
   font-family: Libre Baskerville, Arial, serif;
+  color: $color-brand-surfie-green;
+  margin: 1rem auto;
 }
 </style>
