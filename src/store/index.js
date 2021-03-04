@@ -27,6 +27,12 @@ export default new Vuex.Store({
   actions: {
     getHardiness(context) {
       const zip = context.state.zip
+      fetch(`https://phzmapi.org/${zip}.json`)
+        .then(response => response.json())
+        .then(data => {
+          const zone = parseInt(data.zone.split('')[0])
+          context.commit('setHardiness', zone);
+        })
     }
   },
   modules: {

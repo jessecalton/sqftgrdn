@@ -8,10 +8,6 @@
                 <span class="setup--heading">Select a Garden Size</span>
                 <div class="setup--size-container">
                     <div class="setup--size-option">
-                        <label class="setup--size-label four-by-four" for="4x4">
-                            <div class="setup--label__option">Option 1</div>
-                            <div class="setup--label__dimensions">4 x 4</div>
-                        </label>
                         <input 
                             class="setup--size-input" 
                             type="radio" 
@@ -20,12 +16,12 @@
                             value="4x4" 
                             v-model="size" 
                             @change="updateSize" >
+                        <label class="setup--size-label four-by-four" for="4x4">
+                            <div class="setup--label__option">Option 1</div>
+                            <div class="setup--label__dimensions">4 x 4</div>
+                        </label>
                     </div>
                     <div class="setup--size-option">
-                        <label class="setup--size-label three-by-five" for="3x5">
-                            <div class="setup--label__option">Option 2</div>
-                            <div class="setup--label__dimensions">3 x 8</div>
-                        </label>
                         <input 
                             class="setup--size-input" 
                             type="radio" 
@@ -34,12 +30,12 @@
                             value="3x8" 
                             v-model="size" 
                             @change="updateSize">
+                        <label class="setup--size-label three-by-five" for="3x5">
+                            <div class="setup--label__option">Option 2</div>
+                            <div class="setup--label__dimensions">3 x 8</div>
+                        </label>
                     </div>
                     <div class="setup--size-option">
-                        <label class="setup--size-label three-by-two" for="3x2">
-                            <div class="setup--label__option">Option 3</div>
-                            <div class="setup--label__dimensions">3 x 2</div>
-                        </label>
                         <input 
                             class="setup--size-input" 
                             type="radio" 
@@ -48,9 +44,12 @@
                             value="3x2" 
                             v-model="size" 
                             @change="updateSize">
+                        <label class="setup--size-label three-by-two" for="3x2">
+                            <div class="setup--label__option">Option 3</div>
+                            <div class="setup--label__dimensions">3 x 2</div>
+                        </label>
                     </div>
                     <div class="setup--size-option">
-                        <label class="setup--size-label custom" for="custom">Custom</label>
                         <input 
                             class="setup--size-input" 
                             type="radio" 
@@ -58,6 +57,10 @@
                             name="size" 
                             value="custom" 
                             disabled>
+                        <label class="setup--size-label custom" for="custom">
+                            <div class="setup--label__option">Custom</div>
+                            <div class="setup--label__dimensions">(Coming soon!)</div>
+                        </label>
                     </div>
                 </div>
             </li>
@@ -121,7 +124,6 @@ export default {
             }
         },
         updateSize: function() {
-            console.log("changing size:", this.width, this.height )
             this.setWidth(this.width);
             this.setHeight(this.height);
         },
@@ -152,7 +154,7 @@ export default {
 @import '../css/_variables.scss';
 
     .setup--body {
-        width: 580px;
+        width: 560px;
         margin: auto;
     }
 
@@ -164,7 +166,7 @@ export default {
     .setup--size-option {
         flex-grow: 1;
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         justify-content: center;
         align-items: center;
     }
@@ -176,6 +178,21 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        margin-bottom: .5rem;
+        font-size: 0.875rem;
+    }
+
+    .setup--size-input:checked+.setup--size-label {
+        background: $color-brand-aqua;
+    }
+
+    .setup--list-item {
+        margin-bottom: 1rem;
+    }
+
+    .setup--heading {
+        margin-bottom: 1rem;
+        display: block;
     }
 
     .four-by-four, .custom {
@@ -198,5 +215,10 @@ export default {
         padding: .5rem;
         font-size: 1rem;
         font-family: Karla, sans-serif;
+    }
+
+    .setup--button {
+        display: block;
+        margin: auto;
     }
 </style>
