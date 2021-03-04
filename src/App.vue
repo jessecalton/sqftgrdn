@@ -21,14 +21,20 @@ export default {
 
 #app {
   font-family: Karla, Helvetica, Arial, sans-serif;
-  text-align: center;
-  color: #2c3e50;
   margin-top: 1rem;
+  color: $color-gray-87;
 }
 
 .header--title {
   font-family: Libre Baskerville, Arial, serif;
   color: $color-brand-surfie-green;
   margin: 1rem auto;
+  text-align: center;
+}
+
+a {
+  color: $color-brand-surfie-green;
+  text-decoration: none;
+  border-bottom: 1px solid $color-brand-surfie-green;
 }
 </style>
