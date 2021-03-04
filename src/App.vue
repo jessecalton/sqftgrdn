@@ -17,12 +17,14 @@ export default {
 </script>
 
 <style lang="scss">
+@import './css/_fonts.scss';
 @import './css/_variables.scss';
 
 #app {
   font-family: Karla, Helvetica, Arial, sans-serif;
   margin-top: 1rem;
   color: $color-gray-87;
+  font-size: 1rem;
 }
 
 .header--title {

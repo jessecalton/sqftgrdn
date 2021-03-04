@@ -25,6 +25,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    getHardiness(context) {
+      const zip = context.state.zip
+    }
   },
   modules: {
   }

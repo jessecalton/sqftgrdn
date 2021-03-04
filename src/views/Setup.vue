@@ -8,33 +8,82 @@
                 <span class="setup--heading">Select a Garden Size</span>
                 <div class="setup--size-container">
                     <div class="setup--size-option">
-                        <input class="setup--size-input" type="radio" id="2x4" name="size" value="2x4" v-model="size" @change="updateSize" >
-                        <label class="setup--size-label" for="2x4">2 x 4</label><br>
+                        <label class="setup--size-label four-by-four" for="4x4">
+                            <div class="setup--label__option">Option 1</div>
+                            <div class="setup--label__dimensions">4 x 4</div>
+                        </label>
+                        <input 
+                            class="setup--size-input" 
+                            type="radio" 
+                            id="4x4" 
+                            name="size" 
+                            value="4x4" 
+                            v-model="size" 
+                            @change="updateSize" >
                     </div>
                     <div class="setup--size-option">
-                        <input class="setup--size-input" type="radio" id="3x5" name="size" value="3x5" v-model="size" @change="updateSize">
-                        <label class="setup--size-label" for="3x5">3 x 5</label><br>
+                        <label class="setup--size-label three-by-five" for="3x5">
+                            <div class="setup--label__option">Option 2</div>
+                            <div class="setup--label__dimensions">3 x 8</div>
+                        </label>
+                        <input 
+                            class="setup--size-input" 
+                            type="radio" 
+                            id="3x8" 
+                            name="size" 
+                            value="3x8" 
+                            v-model="size" 
+                            @change="updateSize">
                     </div>
                     <div class="setup--size-option">
-                        <input class="setup--size-input" type="radio" id="4x8" name="size" value="4x8" v-model="size" @change="updateSize">
-                        <label class="setup--size-label" for="4x8">4 x 8</label> 
+                        <label class="setup--size-label three-by-two" for="3x2">
+                            <div class="setup--label__option">Option 3</div>
+                            <div class="setup--label__dimensions">3 x 2</div>
+                        </label>
+                        <input 
+                            class="setup--size-input" 
+                            type="radio" 
+                            id="3x2" 
+                            name="size" 
+                            value="3x2" 
+                            v-model="size" 
+                            @change="updateSize">
                     </div>
                     <div class="setup--size-option">
-                        <label class="setup--size-label" for="custom">Custom</label>
+                        <label class="setup--size-label custom" for="custom">Custom</label>
+                        <input 
+                            class="setup--size-input" 
+                            type="radio" 
+                            id="custom" 
+                            name="size" 
+                            value="custom" 
+                            disabled>
                     </div>
                 </div>
             </li>
             <li class="setup--list-item">
                 <span class="setup--heading">Enter your zip code to determine your Hardiness Zone (optional)</span>
-                <input class="setup--zip" name="zip" type="text" v-model="zip" @keypress="isNumber">
+                <input 
+                    class="setup--zip" 
+                    name="zip" 
+                    type="text" 
+                    placeholder="Zip Code"
+                    v-model="zip" 
+                    @keypress="isNumber"
+                    @blur="handleBlurZip">
             </li>
         </ol>
-        <button class="setup--button btn" :disabled="isDisabled">Start Planning</button>
+        <button 
+            class="setup--button btn" 
+            :disabled="isDisabled"
+            @click.prevent="clickStart">
+            Start Planning
+        </button>
     </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapActions } from 'vuex';
 
 export default {
     name: "Setup",
@@ -51,10 +100,16 @@ export default {
             'setZip',
             'setHardiness'
         ]),
-        updateSize: function() {
-            console.log("changing size:", this.width, this.height )
-            this.setWidth(this.width);
-            this.setHeight(this.height);
+        ...mapActions([
+            'getHardiness'
+        ]),
+        clickStart: function() {
+
+        },
+        handleBlurZip: function() {
+            const zip = this.zip;
+            this.setZip(zip);
+            this.getHardiness();
         },
         isNumber: function(evt) {
             evt = (evt) ? evt : window.event;
@@ -64,7 +119,12 @@ export default {
             } else {
                 return true;
             }
-        }
+        },
+        updateSize: function() {
+            console.log("changing size:", this.width, this.height )
+            this.setWidth(this.width);
+            this.setHeight(this.height);
+        },
     },
     computed: {
         sizeArr: function() {
@@ -89,6 +149,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../css/_variables.scss';
 
     .setup--body {
         width: 580px;
@@ -102,8 +163,40 @@ export default {
 
     .setup--size-option {
         flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
-    .setup--button {
+    .setup--size-label {
+        background: $color-gray-07;
+        display: block;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .four-by-four, .custom {
+        width: 104px;
+        height: 104px;
+    }
+
+    .three-by-five {
+        width: 152px;
+        height: 104px;
+    }
+
+    .three-by-two {
+        width: 79px;
+        height: 104px;
+    }
+    
+    .setup--zip {
+        display: block;
+        padding: .5rem;
+        font-size: 1rem;
+        font-family: Karla, sans-serif;
     }
 </style>
