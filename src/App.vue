@@ -37,4 +37,25 @@ a {
   text-decoration: none;
   border-bottom: 1px solid $color-brand-surfie-green;
 }
+
+.btn {
+   padding: 1rem 2rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border: none;
+    color: $color-white;
+    background: $color-brand-surfie-green;
+    transition: background .15s ease, color .15s ease;
+
+    &:hover:not(.btn:disabled),
+    &:focus:not(.btn:disabled) {
+        cursor: pointer;
+        background: $color-brand-slateblue-dark;
+        color: $color-white;
+    }
+
+    &:disabled {
+      opacity: .5;
+    }
+}
 </style>

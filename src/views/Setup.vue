@@ -26,10 +26,10 @@
             </li>
             <li class="setup--list-item">
                 <span class="setup--heading">Enter your zip code to determine your Hardiness Zone (optional)</span>
-                <input class="setup--zip" name="zip" type="text">
+                <input class="setup--zip" name="zip" type="text" v-model="zip" @keypress="isNumber">
             </li>
         </ol>
-        <button>Start Planning</button>
+        <button class="setup--button btn" :disabled="isDisabled">Start Planning</button>
     </div>
 </template>
 
@@ -55,6 +55,15 @@ export default {
             console.log("changing size:", this.width, this.height )
             this.setWidth(this.width);
             this.setHeight(this.height);
+        },
+        isNumber: function(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+                evt.preventDefault();;
+            } else {
+                return true;
+            }
         }
     },
     computed: {
@@ -68,12 +77,19 @@ export default {
         height: function() {
             const height = this.size!== null ? parseInt(this.sizeArr[0]) : null;
             return height;
+        },
+        zipInt: function() {
+            return parseInt(this.zip);
+        },
+        isDisabled: function() {
+            return this.size === null;
         }
     }
 }
 </script>
 
 <style lang="scss">
+
     .setup--body {
         width: 580px;
         margin: auto;
@@ -88,4 +104,6 @@ export default {
         flex-grow: 1;
     }
 
+    .setup--button {
+    }
 </style>
