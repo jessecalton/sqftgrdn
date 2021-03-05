@@ -41,6 +41,7 @@
                         class="list-group-item grid"
                         v-for="(element, index) in garden"
                         :key="element.name"
+                        :class="adjustFlexBasis"
                     >
                         <button
                             v-if="element.image"
@@ -143,6 +144,13 @@ export default {
             "zip",
             "hardiness",
         ]),
+        adjustFlexBasis() {
+            if (this.height === 3) {
+                return "height-3";
+            } else {
+                return "height-4";
+            }
+        },
     },
     watch: {
         height(newHeight) {
@@ -204,13 +212,18 @@ $green_01: #00727a;
 }
 
 .list-group-item {
-    flex-basis: 18%;
     &.grid {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
         position: relative;
+    }
+    &.height-3 {
+        flex-basis: 22%;
+    }
+    &.height-4 {
+        flex-basis: 18%;
     }
 }
 
