@@ -89,7 +89,7 @@
                 </section>
             </section>
         </vue-html2pdf>
-        <button @click="generateReport">GENERATE PLAN</button>
+        <button class="btn" @click="generateReport">GENERATE PDF PLAN</button>
     </div>
 </template>
 

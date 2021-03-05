@@ -54,12 +54,11 @@
                         <img v-if="element.image" :src="element.image" />
                     </div>
                 </draggable>
-                <div>Zip Code: {{ zip }}</div>
-                <div>Hardiness Zone: {{ hardiness }}</div>
+                <div class="garden--info"><span>Zip Code: {{ zip }}</span>  <span>Hardiness Zone: {{ hardiness }}</span></div>
+                <results />
             </div>
         </div>
 
-        <results />
     </div>
 </template>
 
@@ -294,4 +293,9 @@ img {
     background-color: $green_01;
     -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
+
+.garden--info {
+    margin: 1rem 0;
+}
+
 </style>
