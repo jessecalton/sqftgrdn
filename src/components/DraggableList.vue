@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <!-- <results /> -->
+    <results /> 
     </div>
 </template>
 

@@ -12,7 +12,6 @@
             pdf-format="letter"
             :html-to-pdf-options="htmlToPdfOptions"
     
-            @progress="onProgress($event)"
             @hasStartedGeneration="hasStartedGeneration()"
             @hasGenerated="hasGenerated($event)"
             ref="html2Pdf"
@@ -64,7 +63,28 @@
                 <section class="pdf-item">
                     <div class="section__title">About the Plants</div>
                     <div class="table__container">
-                        <div class="table__content"></div>
+                        <div class="table__content">
+                            <table>
+                                <thead>
+                                    <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Heights</th>
+                                    <th>Seeds/ ft2</th>
+                                    <th>Edible Season</th>
+                                    <th>Seed to Harvest</th>
+                                    <th>Profile</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="row in garden">
+                                        <td><img :src="row.image" /></td>
+                                        <td>{{row.name}}</td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </section>
             </section>
@@ -75,6 +95,7 @@
 
 <script>
 import VueHtml2pdf from 'vue-html2pdf';
+import { mapMutations, mapState } from 'vuex';
 
 export default {
     name: "Results",
@@ -93,6 +114,17 @@ export default {
             htmlToPdfOptions: {enableLinks: true},
         };
     },
+
+    computed: {
+        ...mapState([
+                "nursery",
+                "garden",
+                "width",
+                "height",
+                "zip",
+                "hardiness"
+            ]),
+    },
  
     components: {
         VueHtml2pdf
@@ -104,17 +136,17 @@ export default {
 @import './../css/_variables.scss';
 
 // dev
-.results .vue-html2pdf .layout-container {
-    left: 0 !important;
-    width: auto !important;
-    height: auto !important;
-    z-index: 1 !important;
-    background: white !important;
+// .results .vue-html2pdf .layout-container {
+//     left: 0 !important;
+//     width: auto !important;
+//     height: auto !important;
+//     z-index: 1 !important;
+//     background: white !important;
 
-    .content-wrapper {
-        width: auto !important;
-    }
-}
+//     .content-wrapper {
+//         width: auto !important;
+//     }
+// }
 
 // main 
 
@@ -248,7 +280,6 @@ export default {
 .table__content {
     width: 100%;
     height: 300px;
-    background-color: $color-gray-80;
 }
 
 
