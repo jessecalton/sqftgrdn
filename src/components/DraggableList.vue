@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <!-- <results /> -->
+    <results /> 
     </div>
 </template>
 
@@ -84,25 +84,28 @@ export default {
         addedItem: function(evt) {
             console.log(evt);
             // Edge case for placing an item in the last quadrant
+            let garden = [...this.garden];
             if (evt.newIndex === 7) {
-                for (var i = evt.newIndex; i > this.garden.length; i--) {
-                    if (this.garden[i].name === null && evt.newIndex === 7) {
-                        this.garden.splice(i, 1);
+                for (var i = evt.newIndex; i > garden.length; i--) {
+                    if (garden[i].name === null && evt.newIndex === 7) {
+                        garden.splice(i, 1);
+                        this.$store.commit("setGarden", garden);
                         break;
                     }
                 }
                 // Clear up empty list item adjacent to newly placed item.
             } else {
-                for (var i = evt.newIndex; i < this.garden.length; i++) {
-                    if (this.garden[i].name === null) {
-                        this.garden.splice(i, 1);
+                for (var i = evt.newIndex; i < garden.length; i++) {
+                    if (garden[i].name === null) {
+                        garden.splice(i, 1);
+                        this.$store.commit("setGarden", garden);
                         console.log(i);
                         break;
                     }
                 }
             }
             // Clean up any overflow items
-            this.garden.splice(8);
+            this.garden.splice(this.height * this.width);
         },
         updateGarden: function(newHeight) {
             let height = newHeight;
