@@ -46,17 +46,21 @@
             <div> Hardiness Zone: </div>
         </div>
     </div>
+
+    <results />
     </div>
 </template>
 
 <script>
 import draggable from "vuedraggable";
+import Results from './Results';
 export default {
     name: "draggableList",
     display: "DraggableList",
     order: 2,
     components: {
         draggable,
+        Results,
     },
     data() {
         return {
