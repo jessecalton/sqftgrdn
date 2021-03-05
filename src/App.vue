@@ -17,18 +17,47 @@ export default {
 </script>
 
 <style lang="scss">
+@import './css/_fonts.scss';
 @import './css/_variables.scss';
 
 #app {
   font-family: Karla, Helvetica, Arial, sans-serif;
-  text-align: center;
-  color: #2c3e50;
   margin-top: 1rem;
+  color: $color-gray-87;
+  font-size: 1rem;
 }
 
 .header--title {
   font-family: Libre Baskerville, Arial, serif;
   color: $color-brand-surfie-green;
   margin: 1rem auto;
+  text-align: center;
+}
+
+a {
+  color: $color-brand-surfie-green;
+  text-decoration: none;
+  border-bottom: 1px solid $color-brand-surfie-green;
+}
+
+.btn {
+   padding: 1rem 2rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border: none;
+    color: $color-white;
+    background: $color-brand-surfie-green;
+    transition: background .15s ease, color .15s ease;
+
+    &:hover:not(.btn:disabled),
+    &:focus:not(.btn:disabled) {
+        cursor: pointer;
+        background: $color-brand-slateblue-dark;
+        color: $color-white;
+    }
+
+    &:disabled {
+      opacity: .5;
+    }
 }
 </style>
