@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <h2 class="header--title">Square Foot Garden Planner</h2>
-    <setup></setup>
-    <draggableList />
-  </div>
+    <h2 class="header--title">Square Foot Garden Planner</h2>  
+        <router-link to="/" class="header-link">
+        </router-link>
+        <router-view />
+    </div>
+
 </template>
 
 <script>
@@ -14,7 +16,7 @@ export default {
   name: 'App',
   components: {
     Setup,
-    DraggableList
+    DraggableList,
   }
 }
 </script>

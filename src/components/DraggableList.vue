@@ -1,6 +1,10 @@
 <template>
+<div> 
+    <h3  class = "header"> <strong>Drag and Drop Plants into your Garden </strong> </h3>
+    
     <div class="garden">
         <div class="plant-container">
+            <router-link to="/" class="nav-link">Restart Garden</router-link>
             <h3>Plants</h3>
             <draggable
                 class="dragArea plant-list"
@@ -38,7 +42,12 @@
                     <img v-if="element.image" :src="element.image" />
                 </div>
             </draggable>
+            <div> Zip Code: </div> 
+            <div> Hardiness Zone: </div>
         </div>
+    </div>
+
+    <!-- <results /> -->
     </div>
 </template>
 
@@ -46,12 +55,14 @@
 import draggable from "vuedraggable";
 import { mapMutations, mapState } from 'vuex';
 
+import Results from './Results';
 export default {
     name: "draggableList",
     display: "DraggableList",
     order: 2,
     components: {
         draggable,
+        Results,
     },
     data() {
         return {
@@ -93,6 +104,18 @@ export default {
             // Clean up any overflow items
             this.garden.splice(8);
         },
+        updateGarden: function(newHeight) {
+            let height = newHeight;
+            let width = this.width;
+            let total = height * width;
+            console.log(height, width, total);
+            let garden = []
+            let i;
+            for (i = 0; i < total; i++ ) {
+                garden.push({name: null, id: i, image: null})
+            }
+            this.setGarden(garden);
+        }
     },
     computed: {
         ...mapState([
@@ -106,17 +129,11 @@ export default {
     },
     watch: {
         height (newHeight) {
-            let height = newHeight;
-            let width = this.width;
-            let total = height * width;
-            console.log(height, width, total);
-            let garden = []
-            let i;
-            for (i = 0; i < total; i++ ) {
-                garden.push({name: null, id: i, image: null})
-            }
-            this.setGarden(garden);
+            this.updateGarden(newHeight);
         }
+    },
+    created: function() {
+        this.updateGarden(this.height)
     }
 };
 </script>
@@ -162,6 +179,10 @@ $green_01: #00727a;
 
 .highlight {
     border: 3px solid yellowgreen;
+}
+
+.header {
+    padding-left:130px;
 }
 
 .list-group-item {
