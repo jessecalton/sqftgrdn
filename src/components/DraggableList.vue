@@ -1,61 +1,73 @@
 <template>
-<div> 
-    <h3  class = "header"> <strong>Drag and Drop Plants into your Garden </strong> </h3>
-    
-    <div class="garden">
-        <div class="plant-container">
-            <router-link to="/" class="nav-link">Restart Garden</router-link>
-            <h3>Plants</h3>
-            <draggable
-                class="dragArea plant-list"
-                :list="nursery"
-                :group="{ name: 'plants', pull: 'clone', put: false }"
-                @end="orderList"
-            >
-                <div
-                    class="plant-list--item"
-                    v-for="element in nursery"
-                    :key="element.name"
+    <div>
+        <h3 class="header">
+            <strong>Drag and Drop Plants into your Garden </strong>
+        </h3>
+
+        <div class="garden">
+            <div class="plant-container">
+                <router-link to="/" class="nav-link"
+                    >Restart Garden</router-link
                 >
-                    <img v-if="element.image" :src="element.image" />
-                    <span class="plant-list--text">
+                <h3>Plants</h3>
+                <draggable
+                    class="dragArea plant-list"
+                    :list="nursery"
+                    :group="{ name: 'plants', pull: 'clone', put: false }"
+                    @end="orderList"
+                >
+                    <div
+                        class="plant-list--item"
+                        v-for="element in nursery"
+                        :key="element.name"
+                    >
+                        <img v-if="element.image" :src="element.image" />
+                        <span class="plant-list--text">
+                            {{ element.name }}
+                        </span>
+                    </div>
+                </draggable>
+            </div>
+
+            <div class="garden-grid">
+                <h3>Garden</h3>
+                <draggable
+                    class="dragArea list-group grid-wrapper"
+                    :list="garden"
+                    group="plants"
+                    @add="addedItem"
+                >
+                    <div
+                        class="list-group-item grid"
+                        v-for="(element, index) in garden"
+                        :key="element.name"
+                    >
+                        <button
+                            v-if="element.image"
+                            v-on:click="deleteVeg(index)"
+                            id="delete-veg"
+                            class="delete-veg"
+                        >
+                            -
+                        </button>
                         {{ element.name }}
-                    </span>
-                </div>
-            </draggable>
+                        <img v-if="element.image" :src="element.image" />
+                    </div>
+                </draggable>
+                <div>Zip Code: {{ zip }}</div>
+                <div>Hardiness Zone: {{ hardiness }}</div>
+            </div>
         </div>
 
-        <div class="garden-grid">
-            <h3>Garden</h3>
-            <draggable
-                class="dragArea list-group grid-wrapper"
-                :list="garden"
-                group="plants"
-                @add="addedItem"
-            >
-                <div
-                    class="list-group-item grid"
-                    v-for="element in garden"
-                    :key="element.name"
-                >
-                    {{ element.name }}
-                    <img v-if="element.image" :src="element.image" />
-                </div>
-            </draggable>
-            <div> Zip Code: {{zip}}</div> 
-            <div> Hardiness Zone: {{hardiness}}</div>
-        </div>
-    </div>
-
-    <results /> 
+        <results />
     </div>
 </template>
 
 <script>
 import draggable from "vuedraggable";
-import { mapMutations, mapState } from 'vuex';
+import { mapMutations, mapState } from "vuex";
 
-import Results from './Results';
+import Results from "./Results";
 export default {
     name: "draggableList",
     display: "DraggableList",
@@ -65,16 +77,20 @@ export default {
         Results,
     },
     data() {
-        return {
-            
-        };
+        return {};
     },
     methods: {
-        ...mapMutations([
-            'setGarden'
-        ]),
+        ...mapMutations(["setGarden"]),
         log: function(evt) {
             window.console.log(evt.item.innerText);
+        },
+
+        deleteVeg: function(index) {
+            this.garden.splice(index, 1, {
+                id: index,
+                image: null,
+                name: null,
+            });
         },
 
         orderList: function(evt) {
@@ -111,32 +127,32 @@ export default {
             let height = newHeight;
             let width = this.width;
             let total = height * width;
-            let garden = []
+            let garden = [];
             let i;
-            for (i = 0; i < total; i++ ) {
-                garden.push({name: null, id: i, image: null})
+            for (i = 0; i < total; i++) {
+                garden.push({ name: null, id: i, image: null });
             }
             this.setGarden(garden);
-        }
+        },
     },
     computed: {
         ...mapState([
-                "nursery",
-                "garden",
-                "width",
-                "height",
-                "zip",
-                "hardiness"
-            ]),
+            "nursery",
+            "garden",
+            "width",
+            "height",
+            "zip",
+            "hardiness",
+        ]),
     },
     watch: {
-        height (newHeight) {
+        height(newHeight) {
             this.updateGarden(newHeight);
-        }
+        },
     },
     created: function() {
-        this.updateGarden(this.height)
-    }
+        this.updateGarden(this.height);
+    },
 };
 </script>
 <style scoped lang="scss">
@@ -184,7 +200,7 @@ $green_01: #00727a;
 }
 
 .header {
-    padding-left:130px;
+    padding-left: 130px;
 }
 
 .list-group-item {
@@ -194,6 +210,22 @@ $green_01: #00727a;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        position: relative;
+    }
+}
+
+.delete-veg {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    border-radius: 10px;
+    border-color: #e5653c;
+    width: 20px;
+    background-color: #f4f9fe;
+    border-style: solid;
+
+    &:focus {
+        outline: none;
     }
 }
 
