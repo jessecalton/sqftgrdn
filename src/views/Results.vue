@@ -98,15 +98,15 @@ export default {
 // @import './../css/_variables.scss';
 
 // dev
-.results .vue-html2pdf .layout-container {
-    left: 0 !important;
-    width: auto !important;
-    height: auto !important;
+// .results .vue-html2pdf .layout-container {
+//     left: 0 !important;
+//     width: auto !important;
+//     height: auto !important;
 
-    .content-wrapper {
-        width: auto !important;
-    }
-}
+//     .content-wrapper {
+//         width: auto !important;
+//     }
+// }
 
 // main 
 

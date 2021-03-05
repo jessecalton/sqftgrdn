@@ -3,18 +3,21 @@
     <h2 class="header--title">Square Foot Garden Planner</h2>
     <setup></setup>
     <draggableList />
+    <results></results>
   </div>
 </template>
 
 <script>
 import Setup from './views/Setup';
 import DraggableList from './components/DraggableList'
+import Results from './views/Results';
 
 export default {
   name: 'App',
   components: {
     Setup,
-    DraggableList
+    DraggableList,
+    Results
   }
 }
 </script>
