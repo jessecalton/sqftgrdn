@@ -55,11 +55,13 @@
                         <img v-if="element.image" :src="element.image" />
                     </div>
                 </draggable>
-                <div class="garden--info"><span>Zip Code: {{ zip }}</span>  <span>Hardiness Zone: {{ hardiness }}</span></div>
+                <div class="garden--info">
+                    <span>Zip Code: {{ zip }}</span>
+                    <span>Hardiness Zone: {{ hardiness }}</span>
+                </div>
                 <results />
             </div>
         </div>
-
     </div>
 </template>
 
@@ -80,7 +82,7 @@ export default {
         return {};
     },
     methods: {
-        ...mapMutations(["setGarden","filterNursery"]),
+        ...mapMutations(["setGarden", "filterNursery"]),
         log: function(evt) {
             window.console.log(evt.item.innerText);
         },
@@ -278,7 +280,7 @@ img {
         &:hover {
             background-color: white;
             border: 2px dotted $green_01;
-            width: 190px;
+            width: 70%;
             height: 46px;
         }
 
@@ -310,5 +312,4 @@ img {
 .garden--info {
     margin: 1rem 0;
 }
-
 </style>
