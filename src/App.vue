@@ -2,16 +2,19 @@
   <div id="app">
     <h2 class="header--title">Square Foot Garden Planner</h2>
     <setup></setup>
+    <draggableList />
   </div>
 </template>
 
 <script>
 import Setup from './views/Setup';
+import DraggableList from './components/DraggableList'
 
 export default {
   name: 'App',
   components: {
-    Setup
+    Setup,
+    DraggableList
   }
 }
 </script>
