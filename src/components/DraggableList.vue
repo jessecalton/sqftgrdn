@@ -1,6 +1,10 @@
 <template>
+<div> 
+    <h3  class = "header"> <strong>Drag and Drop Plants into your Garden </strong> </h3>
+    
     <div class="garden">
         <div class="plant-container">
+            <router-link to="/" class="nav-link">Restart Garden</router-link>
             <h3>Plants</h3>
             <draggable
                 class="dragArea plant-list"
@@ -38,7 +42,10 @@
                     <img v-if="element.image" :src="element.image" />
                 </div>
             </draggable>
+            <div> Zip Code: </div> 
+            <div> Hardiness Zone: </div>
         </div>
+    </div>
     </div>
 </template>
 
@@ -185,6 +192,10 @@ $green_01: #00727a;
 
 .highlight {
     border: 3px solid yellowgreen;
+}
+
+.header {
+    padding-left:130px;
 }
 
 .list-group-item {

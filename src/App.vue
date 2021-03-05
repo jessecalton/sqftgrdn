@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <h2 class="header--title">Square Foot Garden Planner</h2>
-    <setup></setup>
-    <draggableList />
-  </div>
+    <h2 class="header--title">Square Foot Garden Planner</h2>  
+        <router-link to="/" class="header-link">
+        </router-link>
+        <router-view />
+    </div>
+
 </template>
 
 <script>
@@ -33,5 +35,6 @@ export default {
   font-family: Libre Baskerville, Arial, serif;
   color: $color-brand-surfie-green;
   margin: 1rem auto;
+  padding-left: 120px;
 }
 </style>
