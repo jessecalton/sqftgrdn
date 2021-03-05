@@ -65,8 +65,8 @@
                 </div>
             </li>
             <li class="setup--list-item">
-                <span class="setup--heading">Enter your zip code to determine your Hardiness Zone (optional)</span> 
-                <img src = '../assets/info.png' class ="img-icon" title = "Your hardiness zone will determine which plants are suitable for your climate."> <a href = "https://www.thespruce.com/find-your-usda-zone-3269819" target = _blank >Learn more about them here</a>
+                <span class="setup--heading">Enter your zip code to determine your <a href = "https://www.thespruce.com/find-your-usda-zone-3269819" target = _blank >Hardiness Zone</a> (optional) <img src = '../assets/info.png' class ="img-icon setup__tooltip" title = "Your hardiness zone will determine which plants are suitable for your climate."></span> 
+                
                 <input 
                     class="setup--zip" 
                     name="zip" 
@@ -242,6 +242,10 @@ export default {
         padding: .5rem;
         font-size: 1rem;
         font-family: Karla, sans-serif;
+    }
+
+    .setup--tooltip {
+        display: inline;
     }
 
     .setup--button {

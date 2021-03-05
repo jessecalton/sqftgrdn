@@ -8,7 +8,51 @@ export default new Vuex.Store({
     width: 0,
     height: 0,
     zip: null,
-    hardiness: null
+    hardiness: null,
+    nursery: [
+      {
+          name: "Asparagus",
+          id: 1,
+          image: require("../assets/svg/asparagus.svg"),
+      },
+      {
+          name: "Broccoli",
+          id: 2,
+          image: require("../assets/svg/broccoli.svg"),
+      },
+      {
+          name: "Cabbage",
+          id: 3,
+          image: require("../assets/svg/cabbage.svg"),
+      },
+      {
+          name: "Cucumber",
+          id: 4,
+          image: require("../assets/svg/cucumber.svg"),
+      },
+      {
+          name: "Eggplant",
+          id: 5,
+          image: require("../assets/svg/eggplant.svg"),
+      },
+      {
+          name: "Onion",
+          id: 6,
+          image: require("../assets/svg/onion.svg"),
+      },
+      {
+          name: "Squash",
+          id: 7,
+          image: require("../assets/svg/squash.svg"),
+      },
+      {
+          name: "Tomato",
+          id: 7,
+          image: require("../assets/svg/tomato.svg"),
+      },
+    ],
+    garden: [
+    ],
   },
   mutations: {
     setWidth(state, payload) {
@@ -22,6 +66,9 @@ export default new Vuex.Store({
     },
     setHardiness(state, payload) {
       state.hardiness = payload
+    },
+    setGarden(state, payload) {
+      state.garden = payload
     }
   },
   actions: {
