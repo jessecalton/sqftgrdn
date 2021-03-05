@@ -12,13 +12,13 @@
                 <h3>Plants</h3>
                 <draggable
                     class="dragArea plant-list"
-                    :list="nursery"
+                    :list="filteredNursery"
                     :group="{ name: 'plants', pull: 'clone', put: false }"
                     @end="orderList"
                 >
                     <div
                         class="plant-list--item"
-                        v-for="element in nursery"
+                        v-for="element in filteredNursery"
                         :key="element.name"
                     >
                         <img v-if="element.image" :src="element.image" />
@@ -55,12 +55,11 @@
                         <img v-if="element.image" :src="element.image" />
                     </div>
                 </draggable>
-                <div>Zip Code: {{ zip }}</div>
-                <div>Hardiness Zone: {{ hardiness }}</div>
+                <div class="garden--info"><span>Zip Code: {{ zip }}</span>  <span>Hardiness Zone: {{ hardiness }}</span></div>
+                <results />
             </div>
         </div>
 
-        <results />
     </div>
 </template>
 
@@ -81,7 +80,7 @@ export default {
         return {};
     },
     methods: {
-        ...mapMutations(["setGarden"]),
+        ...mapMutations(["setGarden","filterNursery"]),
         log: function(evt) {
             window.console.log(evt.item.innerText);
         },
@@ -138,7 +137,7 @@ export default {
     },
     computed: {
         ...mapState([
-            "nursery",
+            "filteredNursery",
             "garden",
             "width",
             "height",
@@ -160,6 +159,7 @@ export default {
     },
     created: function() {
         this.updateGarden(this.height);
+        this.filterNursery();
     },
 };
 </script>
@@ -208,7 +208,7 @@ $green_01: #00727a;
 }
 
 .header {
-    padding-left: 130px;
+    padding-left: 480px;
 }
 
 .list-group-item {
@@ -306,4 +306,9 @@ img {
     background-color: $green_01;
     -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
+
+.garden--info {
+    margin: 1rem 0;
+}
+
 </style>

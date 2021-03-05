@@ -18,7 +18,9 @@ export default new Vuex.Store({
           height: "1 to 5 inches",
           editableSeason:"Spring, early summer",
           weeksfromSeedsToHarvest:"2 to 3 yrs.",
-          sprucePage: "https://www.thespruce.com/how-to-plant-and-grow-asparagus-1402814"
+          sprucePage: "https://www.thespruce.com/how-to-plant-and-grow-asparagus-1402814",
+          minZone: 4,
+          maxZone: 9
       },
       {
           name: "Broccoli",
@@ -28,7 +30,9 @@ export default new Vuex.Store({
           height: "18 to 24 inches",
           editableSeason:"Spring, Fall",
           weeksfromSeedsToHarvest:"18",
-          sprucePage: "https://www.thespruce.com/growing-broccoli-plants-in-the-vegetable-garden-1403457"
+          sprucePage: "https://www.thespruce.com/growing-broccoli-plants-in-the-vegetable-garden-1403457",
+          minZone: 3,
+          maxZone: 10
       },
       {
           name: "Cabbage",
@@ -38,7 +42,9 @@ export default new Vuex.Store({
           height: "12 to 18 inches",
           editableSeason:"Spring, Fall",
           weeksfromSeedsToHarvest:"16",
-          sprucePage: "https://www.thespruce.com/growing-and-caring-for-cabbage-plants-1402815"
+          sprucePage: "https://www.thespruce.com/growing-and-caring-for-cabbage-plants-1402815",
+          minZone: 1,
+          maxZone: 9
       },
       {
           name: "Cucumber",
@@ -48,7 +54,9 @@ export default new Vuex.Store({
           height: "12 to 18 inches",
           editableSeason:"Spring, Fall",
           weeksfromSeedsToHarvest:"16",
-          sprucePage: "https://www.thespruce.com/growing-and-caring-for-cabbage-plants-1402815"
+          sprucePage: "https://www.thespruce.com/growing-and-caring-for-cabbage-plants-1402815",
+          minZone: 4,
+          maxZone: 11
       },
       {
           name: "Eggplant",
@@ -58,7 +66,9 @@ export default new Vuex.Store({
           height: "vine",
           editableSeason:"Summer",
           weeksfromSeedsToHarvest:"9",
-          sprucePage: "https://www.thespruce.com/growing-cucumbers-of-all-shapes-and-sizes-1403458"
+          sprucePage: "https://www.thespruce.com/growing-cucumbers-of-all-shapes-and-sizes-1403458",
+          minZone: 4,
+          maxZone: 10
       },
       {
           name: "Onion",
@@ -68,7 +78,9 @@ export default new Vuex.Store({
           height: "20",
           editableSeason:"Summer",
           weeksfromSeedsToHarvest:"1 to 2yrs",
-          sprucePage: "https://www.thespruce.com/growing-onions-1403447"
+          sprucePage: "https://www.thespruce.com/growing-onions-1403447",
+          minZone: 3,
+          maxZone: 9
       },
       {
           name: "Squash",
@@ -78,7 +90,9 @@ export default new Vuex.Store({
           height: "vine",
           editableSeason:"Summer to Fall",
           weeksfromSeedsToHarvest:"12",
-          sprucePage: "https://www.thespruce.com/how-to-grow-pumpkins-1403469"
+          sprucePage: "https://www.thespruce.com/how-to-grow-pumpkins-1403469",
+          minZone: 3,
+          maxZone: 9
       },
       {
           name: "Tomato",
@@ -88,11 +102,14 @@ export default new Vuex.Store({
           height: "3' (bush) 6' (vine)",
           editableSeason:"Summer",
           weeksfromSeedsToHarvest:"17",
-          sprucePage: "https://www.thespruce.com/growing-tomatoes-1403296"
+          sprucePage: "https://www.thespruce.com/growing-tomatoes-1403296",
+          minZone: 4,
+          maxZone: 11
       },
     ],
     garden: [
     ],
+    filteredNursery: []
   },
   mutations: {
     setWidth(state, payload) {
@@ -109,6 +126,15 @@ export default new Vuex.Store({
     },
     setGarden(state, payload) {
       state.garden = payload
+    },
+    filterNursery(state) {
+      let nursery = [...state.nursery];
+      let hardiness = state.hardiness;
+
+      let filteredNursery = nursery.filter( plant => hardiness >= plant.minZone && hardiness <= plant.maxZone );
+
+      state.filteredNursery = filteredNursery;
+
     }
   },
   actions: {
