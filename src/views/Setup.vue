@@ -1,7 +1,7 @@
 <template>
     <div class="setup">
-        <div class="setup--body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id malesuada purus neque, lobortis. <a href="#">Learn more about this tool.</a>
+        <div class="setup--body"  align="center">
+            <strong>Welcome to the Spruce’s Virtual Square Foot Garden Planner!  <br>We’re here to help you build your dream garden. <br>We have a curated library of plants that you can use to create your personalized garden plan. Select a garden size and zip code to get started!</strong>
         </div>
         <ol class="setup--list">
             <li class="setup--list-item">
@@ -65,7 +65,8 @@
                 </div>
             </li>
             <li class="setup--list-item">
-                <span class="setup--heading">Enter your zip code to determine your Hardiness Zone (optional)</span>
+                <span class="setup--heading">Enter your zip code to determine your Hardiness Zone (optional)</span> 
+                <img src = '../assets/info.png' class ="img-icon" title = "Your hardiness zone will determine which plants are suitable for your climate."> <a href = "https://www.thespruce.com/find-your-usda-zone-3269819" target = _blank >Learn more about them here</a>
                 <input 
                     class="setup--zip" 
                     name="zip" 
@@ -210,6 +211,12 @@ export default {
         height: 104px;
     }
     
+     .img-icon {
+        width: 15px;
+        height: 15px;
+        padding-left:3px;
+        top: 5px;
+    }
     .setup--zip {
         display: block;
         padding: .5rem;
