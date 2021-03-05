@@ -13,7 +13,10 @@
                     v-for="element in list1"
                     :key="element.name"
                 >
-                    {{ element.name }}
+                    <img v-if="element.image" :src="element.image" />
+                    <span class="plant-list--text">
+                        {{ element.name }}
+                    </span>
                 </div>
             </draggable>
         </div>
@@ -32,6 +35,7 @@
                     :key="element.name"
                 >
                     {{ element.name }}
+                    <img v-if="element.image" :src="element.image" />
                 </div>
             </draggable>
         </div>
@@ -50,23 +54,56 @@ export default {
     data() {
         return {
             list1: [
-                { name: "Carrots", id: 1, image: "/assets/svg/carrots.svg" },
-                { name: "Lettuce", id: 2 },
-                { name: "Kale", id: 3 },
-                { name: "Chard", id: 4 },
-                { name: "Avocado", id: 5 },
-                { name: "Tomato", id: 6 },
-                { name: "OG Kush", id: 7 },
+                {
+                    name: "Asparagus",
+                    id: 1,
+                    image: require("../assets/svg/asparagus.svg"),
+                },
+                {
+                    name: "Broccoli",
+                    id: 2,
+                    image: require("../assets/svg/broccoli.svg"),
+                },
+                {
+                    name: "Cabbage",
+                    id: 3,
+                    image: require("../assets/svg/cabbage.svg"),
+                },
+                {
+                    name: "Cucumber",
+                    id: 4,
+                    image: require("../assets/svg/cucumber.svg"),
+                },
+                {
+                    name: "Eggplant",
+                    id: 5,
+                    image: require("../assets/svg/eggplant.svg"),
+                },
+                {
+                    name: "Onion",
+                    id: 6,
+                    image: require("../assets/svg/onion.svg"),
+                },
+                {
+                    name: "Squash",
+                    id: 7,
+                    image: require("../assets/svg/squash.svg"),
+                },
+                {
+                    name: "Tomato",
+                    id: 7,
+                    image: require("../assets/svg/tomato.svg"),
+                },
             ],
             list2: [
-                { name: null, id: 1 },
-                { name: null, id: 2 },
-                { name: null, id: 3 },
-                { name: null, id: 4 },
-                { name: null, id: 5 },
-                { name: null, id: 6 },
-                { name: null, id: 7 },
-                { name: null, id: 8 },
+                { name: null, id: 1, image: null },
+                { name: null, id: 2, image: null },
+                { name: null, id: 3, image: null },
+                { name: null, id: 4, image: null },
+                { name: null, id: 5, image: null },
+                { name: null, id: 6, image: null },
+                { name: null, id: 7, image: null },
+                { name: null, id: 8, image: null },
             ],
         };
     },
@@ -113,25 +150,24 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ddd;
     flex-wrap: wrap;
-    height: 344px;
+    background-color: #f4f4f7;
+    border: 1px solid #dedef4;
+    border-radius: 5px;
+    height: 360px;
     overflow: hidden;
 }
 
 .grid,
 .sortable-chosen.sortable-ghost {
-    border: 1px solid black;
+    border: 4px dashed #00727a;
+    border-radius: 10px;
     width: 150px;
     height: 150px;
     margin: 10px;
 }
 
 .plant-list--item.sortable-chosen.sortable-ghost {
-    border: 3px solid yellowgreen;
-    & + .list-group-item {
-        display: none;
-    }
 }
 
 .garden-grid {
@@ -154,21 +190,65 @@ export default {
 
 .list-group-item {
     flex-basis: 20%;
+    &.grid {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+img {
+    .plant-list--item & {
+        width: 40px;
+        background-color: white;
+        padding: 5px;
+    }
+
+    .list-group-item.grid & {
+        width: 80px;
+    }
 }
 
 .plant-list {
     text-align: left;
     display: flex;
     flex-direction: column;
+    width: 80%;
+    background-color: #f4f4f7;
+    border: 1px solid #dedef4;
+    border-radius: 5px;
+    padding: 0 20px;
+    overflow-y: scroll;
+    height: 500px;
+
+    &--text {
+        margin-left: 20px;
+    }
 
     &--item {
         margin: 12px 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
         &.sortable-chosen.sortable-ghost {
             border: 3px solid yellowgreen;
             & + .list-group-item {
-                visibility: collapse;
+                display: none;
             }
         }
     }
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #00727a;
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 </style>
