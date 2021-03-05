@@ -42,13 +42,32 @@
 
                 <section class="pdf-item pdf__summary">
                     <h2 class="summary__title">Brief Summary</h2>
-                    <div class="summary__text">You are looking at your customized garden layout. Bellow is the grid that you selected with icons representing each picked plant. To learn more about your plants needs, you can look at the table on the next page. Happy planting!</div>
+                    <div class="summary__text">You are looking at your personalized garden layout. To learn more about your plants needs, you can look at the table on the next page. Happy planting!</div>
                 </section>
 
                 <section class="pdf-item">
                     <div class="section__title">Your Garden Plan</div>
                     <div class="garden__container">
-                        <div class="garden__content"></div>
+                        <div class="garden__content">
+                            <div
+                                class="grid-wrapper"
+                                :list="garden"
+                                group="plants"
+                            >
+                                <div
+                                    class="list-group-item grid"
+                                    v-for="(element, index) in garden"
+                                    :key="element.name"
+                                >
+                                    <img v-if="element.image" :src="element.image" />
+                                </div>
+                            </div>
+                            <div class="garden__details">
+                                <span>Zip Code: {{ zip }}, Hardiness Zone: {{ hardiness }}</span>
+                                <span class="garden__dimensions">{{ width }} x {{ height }}</span>
+                            </div>
+                            
+                        </div>
                     </div>
                 </section>
 
@@ -131,7 +150,7 @@ export default {
     },
  
     components: {
-        VueHtml2pdf
+        VueHtml2pdf,
     }
 }
 </script>
@@ -228,11 +247,16 @@ export default {
 .intro__text {
     margin-top: 2rem;
     margin-bottom: 1.5rem;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    color: $color-gray-60;
 }
 
 .intro__social {
     display: flex;
     justify-content: center;
+    color: $color-gray-80;
 }
 
 .intro__social-logo-container {
@@ -257,7 +281,6 @@ export default {
 }
 
 // garden section
-
 .garden__container {
     display: flex;
     justify-content: center;
@@ -267,9 +290,20 @@ export default {
 }
 
 .garden__content {
-    width: 300px;
-    height: 300px;
-    background-color: $color-gray-80;
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+
+.garden__details {
+    color: $color-gray-60;
+    text-align: left;
+    margin-top: 0.5rem;
+    font-family: Karla, sans-serif;
+}
+
+.garden__dimensions {
+    float: right;
 }
 
 // table section
@@ -306,5 +340,111 @@ export default {
     }
 }
 
+// from draggable
+.pdf-container {
+$eats-background: #f4f9fe;
+$green_01: #00727a;
+
+.garden {
+    display: flex;
+}
+.grid-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #F4F4F7;
+    overflow: hidden;
+}
+
+.grid,
+.sortable-chosen.sortable-ghost {
+    background-color: $color-brand-aqua-spring;
+    max-width: 60px;
+    max-height: 60px;
+    height: 60px;
+    padding: 0.5rem;
+    margin: 10px;
+}
+
+.plant-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-basis: 25%;
+    margin-left: 100px;
+}
+
+.highlight {
+    border: 3px solid yellowgreen;
+}
+
+.header {
+    padding-left: 130px;
+}
+
+.list-group-item {
+    flex-basis: 20%;
+    &.grid {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+    }
+}
+
+.delete-veg {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    border-radius: 10px;
+    border-color: #e5653c;
+    width: 20px;
+    background-color: #f4f9fe;
+    border-style: solid;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.list-group-item.grid img {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+}
+
+.plant-list {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    background-color: $eats-background;
+    border-radius: 5px;
+    padding: 0 20px;
+    overflow-y: scroll;
+    height: 500px;
+
+    &--text {
+        margin-left: 20px;
+    }
+
+    &--item {
+        margin: 12px 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        &.sortable-chosen.sortable-ghost {
+            border: 3px solid yellowgreen;
+            & + .list-group-item {
+                display: none;
+            }
+        }
+    }
+}
+}
 
 </style>
