@@ -108,7 +108,6 @@ export default {
             let height = newHeight;
             let width = this.width;
             let total = height * width;
-            console.log(height, width, total);
             let garden = []
             let i;
             for (i = 0; i < total; i++ ) {
