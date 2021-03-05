@@ -1,23 +1,22 @@
 <template>
   <div id="app">
-    <h2 class="header--title">Square Foot Garden Planner</h2>
-    <setup></setup>
-    <draggableList />
-    <results></results>
-  </div>
+    <h2 class="header--title">Square Foot Garden Planner</h2>  
+        <router-link to="/" class="header-link">
+        </router-link>
+        <router-view />
+    </div>
+
 </template>
 
 <script>
 import Setup from './views/Setup';
 import DraggableList from './components/DraggableList'
-import Results from './views/Results';
 
 export default {
   name: 'App',
   components: {
     Setup,
     DraggableList,
-    Results
   }
 }
 </script>

@@ -81,8 +81,9 @@
             class="setup--button btn" 
             :disabled="isDisabled"
             @click.prevent="clickStart">
-            Start Planning
+            <router-link to="/draggable" class="nav-link">Start Planning</router-link>
         </button>
+         
     </div>
 </template>
 
@@ -152,6 +153,25 @@ export default {
 </script>
 
 <style lang="scss">
+ $primary-color: #2c3e50;
+    $active-color: #00727A;
+.nav-link {
+        font-size: 1.5rem;
+        text-decoration: none;
+        border: solid 1px lighten($primary-color, 60%);
+        border: solid 1px;
+        border-radius: 0.25rem;
+        padding: 0.5rem 1.5rem;
+        transition: all 0.15s ease;
+        background-color: white;
+        margin: 0 1rem;
+        &:hover {
+            border-color: $primary-color;
+            background-color: $primary-color;
+            color: white;
+        }
+    }
+
 @import '../css/_variables.scss';
 
     .setup--body {
