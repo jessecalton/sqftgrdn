@@ -161,7 +161,9 @@ export default {
     },
     created: function() {
         this.updateGarden(this.height);
-        this.filterNursery();
+        if (this.hardiness !== null) {
+            this.filterNursery();
+        }
     },
 };
 </script>

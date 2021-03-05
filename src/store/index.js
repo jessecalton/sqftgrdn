@@ -109,7 +109,104 @@ export default new Vuex.Store({
     ],
     garden: [
     ],
-    filteredNursery: []
+    filteredNursery: [
+      {
+          name: "Asparagus",
+          id: 1,
+          image: require("../assets/svg/asparagus.svg"),
+          spacing: 1,
+          height: "1 to 5 inches",
+          editableSeason:"Spring, early summer",
+          weeksfromSeedsToHarvest:"2 to 3 yrs.",
+          sprucePage: "https://www.thespruce.com/how-to-plant-and-grow-asparagus-1402814",
+          minZone: 4,
+          maxZone: 9
+      },
+      {
+          name: "Broccoli",
+          id: 2,
+          image: require("../assets/svg/broccoli.svg"),
+          spacing: 1,
+          height: "18 to 24 inches",
+          editableSeason:"Spring, Fall",
+          weeksfromSeedsToHarvest:"18",
+          sprucePage: "https://www.thespruce.com/growing-broccoli-plants-in-the-vegetable-garden-1403457",
+          minZone: 3,
+          maxZone: 10
+      },
+      {
+          name: "Cabbage",
+          id: 3,
+          image: require("../assets/svg/cabbage.svg"),
+          spacing: 1,
+          height: "12 to 18 inches",
+          editableSeason:"Spring, Fall",
+          weeksfromSeedsToHarvest:"16",
+          sprucePage: "https://www.thespruce.com/growing-and-caring-for-cabbage-plants-1402815",
+          minZone: 1,
+          maxZone: 9
+      },
+      {
+          name: "Cucumber",
+          id: 4,
+          image: require("../assets/svg/cucumber.svg"),
+          spacing: 1,
+          height: "12 to 18 inches",
+          editableSeason:"Spring, Fall",
+          weeksfromSeedsToHarvest:"16",
+          sprucePage: "https://www.thespruce.com/growing-and-caring-for-cabbage-plants-1402815",
+          minZone: 4,
+          maxZone: 11
+      },
+      {
+          name: "Eggplant",
+          id: 5,
+          image: require("../assets/svg/eggplant.svg"),
+          spacing: 2,
+          height: "vine",
+          editableSeason:"Summer",
+          weeksfromSeedsToHarvest:"9",
+          sprucePage: "https://www.thespruce.com/growing-cucumbers-of-all-shapes-and-sizes-1403458",
+          minZone: 4,
+          maxZone: 10
+      },
+      {
+          name: "Onion",
+          id: 6,
+          image: require("../assets/svg/onion.svg"),
+          spacing: 16,
+          height: "20",
+          editableSeason:"Summer",
+          weeksfromSeedsToHarvest:"1 to 2yrs",
+          sprucePage: "https://www.thespruce.com/growing-onions-1403447",
+          minZone: 3,
+          maxZone: 9
+      },
+      {
+          name: "Squash",
+          id: 7,
+          image: require("../assets/svg/squash.svg"),
+          spacing: 1,
+          height: "vine",
+          editableSeason:"Summer to Fall",
+          weeksfromSeedsToHarvest:"12",
+          sprucePage: "https://www.thespruce.com/how-to-grow-pumpkins-1403469",
+          minZone: 3,
+          maxZone: 9
+      },
+      {
+          name: "Tomato",
+          id: 7,
+          image: require("../assets/svg/tomato.svg"),
+          spacing: 1,
+          height: "3' (bush) 6' (vine)",
+          editableSeason:"Summer",
+          weeksfromSeedsToHarvest:"17",
+          sprucePage: "https://www.thespruce.com/growing-tomatoes-1403296",
+          minZone: 4,
+          maxZone: 11
+      },
+    ]
   },
   mutations: {
     setWidth(state, payload) {
