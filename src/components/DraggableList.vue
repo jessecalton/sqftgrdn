@@ -42,8 +42,8 @@
                     <img v-if="element.image" :src="element.image" />
                 </div>
             </draggable>
-            <div> Zip Code: </div> 
-            <div> Hardiness Zone: </div>
+            <div> Zip Code: {{zip}}</div> 
+            <div> Hardiness Zone: {{hardiness}}</div>
         </div>
     </div>
 
