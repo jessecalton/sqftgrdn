@@ -1,7 +1,7 @@
 <template>
     <div class="setup">
-        <div class="setup--body"  align="center">
-            <strong>Welcome to the Spruce’s Virtual Square Foot Garden Planner!  <br>We’re here to help you build your dream garden. <br>We have a curated library of plants that you can use to create your personalized garden plan. Select a garden size and zip code to get started!</strong>
+        <div class="setup--body">
+            Welcome to the Spruce’s Virtual Square Foot Garden Planner! We’re here to help you build your dream garden. We have a curated library of plants that you can use to create your personalized garden plan. Follow the instructions below to get started!
         </div>
         <ol class="setup--list">
             <li class="setup--list-item">
@@ -17,8 +17,7 @@
                             v-model="size" 
                             @change="updateSize" >
                         <label class="setup--size-label four-by-four" for="4x4">
-                            <div class="setup--label__option">Option 1</div>
-                            <div class="setup--label__dimensions">4 x 4</div>
+                            <div class="setup--label__dimensions">4ft x 4ft</div>
                         </label>
                     </div>
                     <div class="setup--size-option">
@@ -31,8 +30,7 @@
                             v-model="size" 
                             @change="updateSize">
                         <label class="setup--size-label three-by-five" for="3x5">
-                            <div class="setup--label__option">Option 2</div>
-                            <div class="setup--label__dimensions">3 x 8</div>
+                            <div class="setup--label__dimensions">3ft x 8ft</div>
                         </label>
                     </div>
                     <div class="setup--size-option">
@@ -45,8 +43,7 @@
                             v-model="size" 
                             @change="updateSize">
                         <label class="setup--size-label three-by-two" for="3x2">
-                            <div class="setup--label__option">Option 3</div>
-                            <div class="setup--label__dimensions">3 x 2</div>
+                            <div class="setup--label__dimensions">3ft x 2ft</div>
                         </label>
                     </div>
                     <div class="setup--size-option">
@@ -153,30 +150,13 @@ export default {
 </script>
 
 <style lang="scss">
- $primary-color: #2c3e50;
-    $active-color: #00727A;
-.nav-link {
-        font-size: 1.5rem;
-        text-decoration: none;
-        border: solid 1px lighten($primary-color, 60%);
-        border: solid 1px;
-        border-radius: 0.25rem;
-        padding: 0.5rem 1.5rem;
-        transition: all 0.15s ease;
-        background-color: white;
-        margin: 0 1rem;
-        &:hover {
-            border-color: $primary-color;
-            background-color: $primary-color;
-            color: white;
-        }
-    }
 
 @import '../css/_variables.scss';
 
     .setup--body {
         width: 560px;
-        margin: auto;
+        margin: 0 auto 2rem;
+        line-height: 1.5rem;
     }
 
     .setup--size-container {
@@ -209,6 +189,20 @@ export default {
 
     .setup--list-item {
         margin-bottom: 1rem;
+        padding-left: 1rem;
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: -1.75rem;
+            top: -0.375rem;
+            height: 2.125rem;
+            width: 2.125rem;
+            background-color: #F2FBFA;
+            border-radius: 1rem;
+            z-index: -1;
+        }
     }
 
     .setup--heading {
@@ -251,5 +245,20 @@ export default {
     .setup--button {
         display: block;
         margin: auto;
+    }
+
+    .nav-link {
+        &::before {
+            content: '<  ';
+            color: #23AFAF;
+        }
+
+        .btn & {
+            color: $color-white;
+
+            &::before {
+                content: none;
+            }
+        }
     }
 </style>
