@@ -77,10 +77,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="row in garden">
+                                    <tr v-if="row.name" v-for="row in garden" :key="row.name">
                                         <td><img :src="row.image" /></td>
                                         <td>{{row.name}}</td>
-                                        <td></td>
+                                        <td>{{row.height}}</td>
+                                        <td>{{row.spacing}}</td>
+                                        <td>{{row.editableSeason}}</td>
+                                        <td>{{row.weeksfromSeedsToHarvest}} weeks</td>
+                                        <td><a :href="row.sprucePage">View</a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -117,13 +121,13 @@ export default {
 
     computed: {
         ...mapState([
-                "nursery",
-                "garden",
-                "width",
-                "height",
-                "zip",
-                "hardiness"
-            ]),
+            "nursery",
+            "garden",
+            "width",
+            "height",
+            "zip",
+            "hardiness"
+        ]),
     },
  
     components: {
@@ -136,6 +140,7 @@ export default {
 @import './../css/_variables.scss';
 
 // dev
+
 // .results .vue-html2pdf .layout-container {
 //     left: 0 !important;
 //     width: auto !important;
@@ -144,7 +149,7 @@ export default {
 //     background: white !important;
 
 //     .content-wrapper {
-//         width: auto !important;
+//         width: 800px !important;
 //     }
 // }
 
@@ -279,7 +284,26 @@ export default {
 
 .table__content {
     width: 100%;
-    height: 300px;
+    font-family: Karla, sans-serif;
+    display: flex;
+    justify-content: center;
+
+    img {
+        width: 2rem;
+    }
+
+    table, th, td {
+        border-collapse: collapse;
+        border: 1.5px solid $color-brand-misty-blue-medium;
+    }
+
+    thead {
+        font-weight: bolder;
+    }
+
+    th, td {
+        padding: 0.5rem;
+    }
 }
 
 
