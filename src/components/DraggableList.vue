@@ -200,7 +200,7 @@ $green_01: #00727a;
 }
 
 .header {
-    padding-left: 130px;
+    padding-left: 480px;
 }
 
 .list-group-item {
