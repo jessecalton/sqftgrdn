@@ -143,6 +143,9 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+$eats-background: #f4f9fe;
+$green_01: #00727a;
+
 .garden {
     display: flex;
 }
@@ -151,8 +154,7 @@ export default {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    background-color: #f4f4f7;
-    border: 1px solid #dedef4;
+    background-color: $eats-background;
     border-radius: 5px;
     height: 360px;
     overflow: hidden;
@@ -160,14 +162,11 @@ export default {
 
 .grid,
 .sortable-chosen.sortable-ghost {
-    border: 4px dashed #00727a;
+    border: 4px dashed $green_01;
     border-radius: 10px;
     width: 150px;
     height: 150px;
     margin: 10px;
-}
-
-.plant-list--item.sortable-chosen.sortable-ghost {
 }
 
 .garden-grid {
@@ -215,8 +214,7 @@ img {
     display: flex;
     flex-direction: column;
     width: 80%;
-    background-color: #f4f4f7;
-    border: 1px solid #dedef4;
+    background-color: $eats-background;
     border-radius: 5px;
     padding: 0 20px;
     overflow-y: scroll;
@@ -248,7 +246,7 @@ img {
 
 ::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    background-color: #00727a;
+    background-color: $green_01;
     -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 </style>
