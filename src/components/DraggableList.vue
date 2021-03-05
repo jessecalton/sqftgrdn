@@ -174,16 +174,16 @@ $green_01: #00727a;
 
 .grid,
 .sortable-chosen.sortable-ghost {
-    border: 4px dashed $green_01;
+    border: 2.5px dashed $green_01;
     border-radius: 10px;
-    width: 150px;
-    height: 150px;
+    width: 70px;
+    height: 70px;
     margin: 10px;
 }
 
 .garden-grid {
     flex-basis: 75%;
-    max-width: 800px;
+    max-width: 500px;
 }
 
 .plant-container {
@@ -204,7 +204,7 @@ $green_01: #00727a;
 }
 
 .list-group-item {
-    flex-basis: 20%;
+    flex-basis: 18%;
     &.grid {
         display: flex;
         justify-content: center;
@@ -232,12 +232,11 @@ $green_01: #00727a;
 img {
     .plant-list--item & {
         width: 40px;
-        background-color: white;
         padding: 5px;
     }
 
     .list-group-item.grid & {
-        width: 80px;
+        width: 40px;
     }
 }
 
@@ -248,7 +247,7 @@ img {
     width: 80%;
     background-color: $eats-background;
     border-radius: 5px;
-    padding: 0 20px;
+    padding: 0;
     overflow-y: scroll;
     height: 500px;
 
@@ -257,13 +256,26 @@ img {
     }
 
     &--item {
-        margin: 12px 0;
         display: flex;
         align-items: center;
         justify-content: flex-start;
+        margin: 12px 0;
+        padding: 0 26px;
+
+        &:hover {
+            background-color: white;
+            border: 2px dotted $green_01;
+            width: 190px;
+            height: 46px;
+        }
 
         &.sortable-chosen.sortable-ghost {
-            border: 3px solid yellowgreen;
+            border: 2.5px solid yellowgreen;
+            width: 10%;
+            flex-direction: column-reverse;
+            justify-content: center;
+            text-align: center;
+
             & + .list-group-item {
                 display: none;
             }
