@@ -4,13 +4,13 @@
             <h3>Plants</h3>
             <draggable
                 class="dragArea plant-list"
-                :list="list1"
+                :list="nursery"
                 :group="{ name: 'plants', pull: 'clone', put: false }"
                 @end="orderList"
             >
                 <div
                     class="plant-list--item"
-                    v-for="element in list1"
+                    v-for="element in nursery"
                     :key="element.name"
                 >
                     <img v-if="element.image" :src="element.image" />
@@ -25,13 +25,13 @@
             <h3>Garden</h3>
             <draggable
                 class="dragArea list-group grid-wrapper"
-                :list="list2"
+                :list="garden"
                 group="plants"
                 @add="addedItem"
             >
                 <div
                     class="list-group-item grid"
-                    v-for="element in list2"
+                    v-for="element in garden"
                     :key="element.name"
                 >
                     {{ element.name }}
@@ -44,6 +44,8 @@
 
 <script>
 import draggable from "vuedraggable";
+import { mapMutations, mapState } from 'vuex';
+
 export default {
     name: "draggableList",
     display: "DraggableList",
@@ -53,61 +55,13 @@ export default {
     },
     data() {
         return {
-            list1: [
-                {
-                    name: "Asparagus",
-                    id: 1,
-                    image: require("../assets/svg/asparagus.svg"),
-                },
-                {
-                    name: "Broccoli",
-                    id: 2,
-                    image: require("../assets/svg/broccoli.svg"),
-                },
-                {
-                    name: "Cabbage",
-                    id: 3,
-                    image: require("../assets/svg/cabbage.svg"),
-                },
-                {
-                    name: "Cucumber",
-                    id: 4,
-                    image: require("../assets/svg/cucumber.svg"),
-                },
-                {
-                    name: "Eggplant",
-                    id: 5,
-                    image: require("../assets/svg/eggplant.svg"),
-                },
-                {
-                    name: "Onion",
-                    id: 6,
-                    image: require("../assets/svg/onion.svg"),
-                },
-                {
-                    name: "Squash",
-                    id: 7,
-                    image: require("../assets/svg/squash.svg"),
-                },
-                {
-                    name: "Tomato",
-                    id: 7,
-                    image: require("../assets/svg/tomato.svg"),
-                },
-            ],
-            list2: [
-                { name: null, id: 1, image: null },
-                { name: null, id: 2, image: null },
-                { name: null, id: 3, image: null },
-                { name: null, id: 4, image: null },
-                { name: null, id: 5, image: null },
-                { name: null, id: 6, image: null },
-                { name: null, id: 7, image: null },
-                { name: null, id: 8, image: null },
-            ],
+            
         };
     },
     methods: {
+        ...mapMutations([
+            'setGarden'
+        ]),
         log: function(evt) {
             window.console.log(evt.item.innerText);
         },
@@ -120,26 +74,50 @@ export default {
             console.log(evt);
             // Edge case for placing an item in the last quadrant
             if (evt.newIndex === 7) {
-                for (var i = evt.newIndex; i > this.list2.length; i--) {
-                    if (this.list2[i].name === null && evt.newIndex === 7) {
-                        this.list2.splice(i, 1);
+                for (var i = evt.newIndex; i > this.garden.length; i--) {
+                    if (this.garden[i].name === null && evt.newIndex === 7) {
+                        this.garden.splice(i, 1);
                         break;
                     }
                 }
                 // Clear up empty list item adjacent to newly placed item.
             } else {
-                for (var i = evt.newIndex; i < this.list2.length; i++) {
-                    if (this.list2[i].name === null) {
-                        this.list2.splice(i, 1);
+                for (var i = evt.newIndex; i < this.garden.length; i++) {
+                    if (this.garden[i].name === null) {
+                        this.garden.splice(i, 1);
                         console.log(i);
                         break;
                     }
                 }
             }
             // Clean up any overflow items
-            this.list2.splice(8);
+            this.garden.splice(8);
         },
     },
+    computed: {
+        ...mapState([
+                "nursery",
+                "garden",
+                "width",
+                "height",
+                "zip",
+                "hardiness"
+            ]),
+    },
+    watch: {
+        height (newHeight) {
+            let height = newHeight;
+            let width = this.width;
+            let total = height * width;
+            console.log(height, width, total);
+            let garden = []
+            let i;
+            for (i = 0; i < total; i++ ) {
+                garden.push({name: null, id: i, image: null})
+            }
+            this.setGarden(garden);
+        }
+    }
 };
 </script>
 <style scoped lang="scss">
@@ -156,7 +134,6 @@ $green_01: #00727a;
     flex-wrap: wrap;
     background-color: $eats-background;
     border-radius: 5px;
-    height: 360px;
     overflow: hidden;
 }
 
