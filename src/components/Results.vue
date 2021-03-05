@@ -10,7 +10,7 @@
             :pdf-quality="2"
             :manual-pagination="false"
             pdf-format="letter"
-            html-to-pdf-options="{enableLinks: true}"
+            :html-to-pdf-options="htmlToPdfOptions"
     
             @progress="onProgress($event)"
             @hasStartedGeneration="hasStartedGeneration()"
@@ -26,7 +26,7 @@
                 </section>
 
                 <section class="pdf-item pdf__intro">
-                    <div class="intro__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel auctor nisl, congue semper tellus.</div>
+                    <div class="intro__text">This was produced by the Spruce’s Square Foot Garden Planner. You’re one step closer to building your dream garden.</div>
                     <div class="intro__social">
                         Share your garden plan: 
                         <a href="https://www.instagram.com" class="intro__social-logo-container">
@@ -43,11 +43,11 @@
 
                 <section class="pdf-item pdf__summary">
                     <h2 class="summary__title">Brief Summary</h2>
-                    <div class="summary__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel auctor nisl, congue semper tellus.</div>
+                    <div class="summary__text">You are looking at your customized garden layout. Bellow is the grid that you selected with icons representing each picked plant. To learn more about your plants needs, you can look at the table on the next page. Happy planting!</div>
                 </section>
 
                 <section class="pdf-item">
-                    <div class="section__title">Your Garden</div>
+                    <div class="section__title">Your Garden Plan</div>
                     <div class="garden__container">
                         <div class="garden__content"></div>
                     </div>
@@ -69,7 +69,7 @@
                 </section>
             </section>
         </vue-html2pdf>
-        <button @click="generateReport">Export to PDF</button>
+        <button @click="generateReport">GENERATE PLAN</button>
     </div>
 </template>
 
@@ -87,6 +87,12 @@ export default {
             this.$refs.html2Pdf.generatePdf()
         },
     },
+
+    data() {
+        return {
+            htmlToPdfOptions: {enableLinks: true},
+        };
+    },
  
     components: {
         VueHtml2pdf
@@ -95,18 +101,20 @@ export default {
 </script>
 
 <style lang="scss">
-// @import './../css/_variables.scss';
+@import './../css/_variables.scss';
 
 // dev
-// .results .vue-html2pdf .layout-container {
-//     left: 0 !important;
-//     width: auto !important;
-//     height: auto !important;
+.results .vue-html2pdf .layout-container {
+    left: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    z-index: 1 !important;
+    background: white !important;
 
-//     .content-wrapper {
-//         width: auto !important;
-//     }
-// }
+    .content-wrapper {
+        width: auto !important;
+    }
+}
 
 // main 
 
@@ -125,6 +133,7 @@ export default {
 }
 
 .section__title {
+    font-family: Libre Baskerville, Arial, serif;
     position: absolute;
     top: 0;
     left: 50%;
@@ -133,7 +142,7 @@ export default {
     letter-spacing: .07em;
     white-space: nowrap;
     background: #FFF;
-    border: 1px solid #00727A;
+    border: 1px solid $color-brand-surfie-green;
     padding: 0.25rem 1rem;
 }
 
@@ -144,9 +153,9 @@ export default {
 // header section
 
 .pdf__title {
-    // font-family: Libre Baskerville, Arial, serif;
+    font-family: Libre Baskerville, Arial, serif;
     font-size: 36px;
-    color: #333;
+    color: $color-gray-80;
     margin: 1rem;
 }
 
@@ -164,6 +173,8 @@ export default {
 // intro section
 
 .pdf__intro {
+    font-family: Karla, sans-serif;
+
     &::before {
         content: '';
         display: block;
@@ -173,7 +184,7 @@ export default {
         width: 7.625rem;
         height: .3125rem;
         transform: translateX(-50%);
-        background: linear-gradient(to bottom, #B0DDDD, #B0DDDD .0625rem, transparent .0625rem, transparent calc(100% - .0625rem), #B0DDDD calc(100% - .0625rem));
+        background: linear-gradient(to bottom, $color-brand-aqua, $color-brand-aqua .0625rem, transparent .0625rem, transparent calc(100% - .0625rem), $color-brand-aqua calc(100% - .0625rem));
     }
 }
 
@@ -189,6 +200,7 @@ export default {
 
 .intro__social-logo-container {
     margin-left: 1rem;
+    border-bottom: none;
 }
 
 // summary section
@@ -198,11 +210,13 @@ export default {
 }
 
 .summary__title {
-    border-bottom: .25rem double #B0DDDD;
+    font-family: Libre Baskerville, Arial, serif;
+    border-bottom: .25rem double $color-brand-aqua;
 }
 
 .summary__text {
     margin-bottom: 2.5rem;
+    font-family: Karla, sans-serif;
 }
 
 // garden section
@@ -211,14 +225,14 @@ export default {
     display: flex;
     justify-content: center;
     width: 100%;
-    border-top: .25rem double #00727A;
-        padding-top: 2.5rem;
+    border-top: .25rem double $color-brand-surfie-green;
+    padding-top: 2.5rem;
 }
 
 .garden__content {
     width: 300px;
     height: 300px;
-    background-color: #333;
+    background-color: $color-gray-80;
 }
 
 // table section
@@ -227,14 +241,14 @@ export default {
     display: flex;
     justify-content: center;
     width: 100%;
-    border-top: .25rem double #00727A;
+    border-top: .25rem double $color-brand-surfie-green;
     padding-top: 2.5rem;
 }
 
 .table__content {
     width: 100%;
     height: 300px;
-    background-color: #333;
+    background-color: $color-gray-80;
 }
 
 
